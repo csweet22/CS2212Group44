@@ -46,6 +46,7 @@ public class LoginUI extends JFrame implements ActionListener{
 		return instance;
 	}
 	
+	// Constructor
 	private LoginUI() {
 
 		// Set window title
