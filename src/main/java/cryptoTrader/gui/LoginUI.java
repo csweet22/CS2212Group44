@@ -39,6 +39,7 @@ public class LoginUI extends JFrame implements ActionListener{
 	private JTextField usernameTextField;
 	private JTextField passwordTextField;
 	
+	// getInstance Method
 	public static LoginUI getInstance() {
 		if (instance == null)
 			instance = new LoginUI();
