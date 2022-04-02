@@ -180,11 +180,10 @@ public class MainUI extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		JFrame loginFrame = LoginUI.getInstance();
-		loginFrame.setSize(450, 300);
-		loginFrame.pack();
-		loginFrame.setVisible(true);	
-		
+		JFrame loginFrame = LoginUI.getInstance();	// Get instance of LoginUI.
+		loginFrame.setSize(600, 400);	// Set LoginUI Window Size
+		loginFrame.pack();				// Pack LoginUI Window
+		loginFrame.setVisible(true);	// Set LoginUI Window to be visible.
 	}
 
 	@Override
