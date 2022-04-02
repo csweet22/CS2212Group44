@@ -30,6 +30,7 @@ import javax.swing.table.TableColumn;
 
 import cryptoTrader.utils.DataVisualizationCreator;
 import cryptoTrader.utils.StrategyFactory;
+import cryptoTrader.utils.TradeHistoryDB;
 
 public class MainUI extends JFrame implements ActionListener {
 	/**
@@ -129,7 +130,8 @@ public class MainUI extends JFrame implements ActionListener {
 			strategyNames.add(name);
 		}
 
-
+		TradeHistoryDB tradeHistroyDB = TradeHistoryDB.getInstance();
+		
 
 		
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
