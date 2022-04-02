@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import cryptoTrader.utils.DataVisualizationCreator;
+import cryptoTrader.utils.StrategyFactory;
 
 public class MainUI extends JFrame implements ActionListener {
 	/**
@@ -53,6 +54,7 @@ public class MainUI extends JFrame implements ActionListener {
 	private String selectedStrategy = "";
 	private DefaultTableModel dtm;
 	private JTable table;
+
 
 	public static MainUI getInstance() {
 		if (instance == null)
@@ -119,12 +121,17 @@ public class MainUI extends JFrame implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
 				TitledBorder.CENTER, TitledBorder.TOP));
+
+		StrategyFactory strategyFactory = StrategyFactory.getInstance();
 		Vector<String> strategyNames = new Vector<String>();
 		strategyNames.add("None");
-		strategyNames.add("Strategy-A");
-		strategyNames.add("Strategy-B");
-		strategyNames.add("Strategy-C");
-		strategyNames.add("Strategy-D");
+		for (String name: strategyFactory.getStrategyNames()){
+			strategyNames.add(name);
+		}
+
+
+
+		
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
 		JComboBox comboBox = new JComboBox(strategyNames);
 		strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));
@@ -204,6 +211,7 @@ public class MainUI extends JFrame implements ActionListener {
 					}
 					String strategyName = strategyObject.toString();
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					//create broker here
 	        }
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
