@@ -41,8 +41,5 @@ public class BrokerManager {
         return brokerList;
     }
 
-    public void printBrokers(){
-        System.out.println(brokers);
-    }
     
 }
