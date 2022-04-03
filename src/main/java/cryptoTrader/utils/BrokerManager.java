@@ -5,18 +5,16 @@ import java.util.HashMap;
 
 public class BrokerManager {
 
-    private static BrokerManager manager = null;
+    private static BrokerManager instance = null;
     private HashMap<String, Broker> brokers = new HashMap<>();
 
-    private BrokerManager(){
-
-    }
+    private BrokerManager(){}
 
     public static BrokerManager getInstance(){
-        if (manager == null){
-            manager = new BrokerManager();
+        if (instance == null){
+            instance = new BrokerManager();
         }
-        return manager;
+        return instance;
     }
 
     public void clearBrokers(){

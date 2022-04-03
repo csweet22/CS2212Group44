@@ -218,7 +218,6 @@ public class MainUI extends JFrame implements ActionListener {
 						JOptionPane.showMessageDialog(this, "Duplicate broker on line " + (count + 1) + ". Broker not added");
 						dtm.removeRow(count);
 					}
-					brokerManager.printBrokers();
 	        }
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
