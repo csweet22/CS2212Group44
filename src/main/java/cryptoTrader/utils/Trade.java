@@ -1,15 +1,15 @@
 package cryptoTrader.utils;
 
 public class Trade {
-	String clientName;
-	String strategyName;
-	String coinTraded;
-	String action;
-	int quantity;
-	float unitPrice;
-	String timeStamp;
+	private String clientName;
+	private String strategyName;
+	private String coinTraded;
+	private String action;
+	private int quantity;
+	private double unitPrice;
+	private String timeStamp;
 	
-	public Trade(String clientName, String strategyName, String coinTraded, String action, int quantity, float unitPrice, String timeStamp) {
+	public Trade(String clientName, String strategyName, String coinTraded, String action, int quantity, double unitPrice, String timeStamp) {
 		this.clientName = clientName;
 		this.strategyName = strategyName;
 		this.coinTraded = coinTraded;
@@ -29,6 +29,10 @@ public class Trade {
 		tradeInfo[5] = unitPrice;
 		tradeInfo[6] = timeStamp;
 		return tradeInfo;
+	}
+
+	public String getName(){
+		return clientName;
 	}
 
 }
