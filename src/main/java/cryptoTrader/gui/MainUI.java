@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import cryptoTrader.utils.BrokerManager;
 import cryptoTrader.utils.DataVisualizationCreator;
 import cryptoTrader.utils.StrategyFactory;
 
@@ -190,7 +191,9 @@ public class MainUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
+		BrokerManager brokerManager = BrokerManager.getInstance();
 		if ("refresh".equals(command)) {
+			brokerManager.clearBrokers();
 			for (int count = 0; count < dtm.getRowCount(); count++){
 					Object traderObject = dtm.getValueAt(count, 0);
 					if (traderObject == null) {
@@ -211,7 +214,10 @@ public class MainUI extends JFrame implements ActionListener {
 					}
 					String strategyName = strategyObject.toString();
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
-					//create broker here
+					if (!brokerManager.addBroker(traderName, coinNames, strategyName)){
+						JOptionPane.showMessageDialog(this, "Duplicate broker on line " + (count + 1) + ". Broker not added");
+						dtm.removeRow(count);
+					}
 	        }
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();

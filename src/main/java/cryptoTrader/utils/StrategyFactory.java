@@ -5,16 +5,16 @@ import java.util.HashMap;
 
 public class StrategyFactory {
 
-    private static StrategyFactory factory = null;
+    private static StrategyFactory instance = null;
 
     private HashMap<String, Strategy> strategies = new HashMap<String, Strategy>();
 
     //Singleton design pattern
     public static StrategyFactory getInstance(){
-        if (factory == null){
-            factory = new StrategyFactory();
+        if (instance == null){
+            instance = new StrategyFactory();
         }
-        return factory;
+        return instance;
     }
 
     private StrategyFactory(){
