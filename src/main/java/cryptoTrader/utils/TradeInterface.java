@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class TradeInterface {
 	static TradeHistoryDB db; //use singleton method to retrieve
 	
-	public void createTrade(String clientName, String strategyName, String coinTraded, String action, int quantity, float unitPrice, String timeStamp) {
+	public Trade createTrade(String clientName, String strategyName, String coinTraded, String action, int quantity, float unitPrice, String timeStamp) {
 		Trade trade = new Trade(clientName, strategyName, coinTraded, action, quantity, unitPrice, timeStamp);
 		db.store(trade);
+		return trade;
 	}
 	
 	public TradeInterface() {

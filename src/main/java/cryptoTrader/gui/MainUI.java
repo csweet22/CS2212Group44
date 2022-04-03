@@ -130,7 +130,7 @@ public class MainUI extends JFrame implements ActionListener {
 			strategyNames.add(name);
 		}
 
-		TradeHistoryDB tradeHistroyDB = TradeHistoryDB.getInstance();
+		TradeHistoryDB tradeHistoryDB = TradeHistoryDB.getInstance();
 		
 
 		

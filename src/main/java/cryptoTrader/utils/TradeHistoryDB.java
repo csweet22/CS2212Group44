@@ -10,9 +10,7 @@ public class TradeHistoryDB {
 	
 	private static TradeHistoryDB database = null;
 	
-	public TradeHistoryDB() {
-	
-	}
+	public TradeHistoryDB() {}
 	
 	public static TradeHistoryDB getInstance() {
 		if(database == null) {

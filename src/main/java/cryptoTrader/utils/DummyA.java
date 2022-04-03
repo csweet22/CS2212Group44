@@ -15,7 +15,8 @@ public class DummyA implements Strategy{
     	float price = (float) fetcher.getPriceForCoin("ETH", date);
     	if(price > 3000) {
     		TradeInterface tInterface = new TradeInterface();
-    		tInterface.createTrade(broker, name, "ETH", "buy", 400, price, date);
+            Trade trade = tInterface.createTrade(broker, name, "ETH", "buy", 400, price, date);
+            return trade;
     	}
         return null;
     }
