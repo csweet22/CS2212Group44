@@ -31,6 +31,7 @@ import javax.swing.table.TableColumn;
 import cryptoTrader.utils.BrokerManager;
 import cryptoTrader.utils.DataVisualizationCreator;
 import cryptoTrader.utils.StrategyFactory;
+import cryptoTrader.utils.TradeAction;
 import cryptoTrader.utils.TradeHistoryDB;
 
 public class MainUI extends JFrame implements ActionListener {
@@ -221,6 +222,9 @@ public class MainUI extends JFrame implements ActionListener {
 						dtm.removeRow(count);
 					}
 	        }
+			TradeAction action = new TradeAction();
+			action.performTrade(brokerManager);//calls the logic of making a trade
+
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
 			creator.createCharts();

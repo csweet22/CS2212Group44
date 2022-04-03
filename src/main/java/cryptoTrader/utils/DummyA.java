@@ -3,18 +3,18 @@ package cryptoTrader.utils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 
 public class DummyA implements Strategy{
     private String name = "Dummy-Strategy-A";
 
     @Override
-    public Trade trade(String broker, String[] coins) {
-    	//buy ETH if its more than 3,000
-    	DataFetcher fetcher = new DataFetcher();
-    	String date = java.time.LocalDate.now().toString();
-    	float price = (float) fetcher.getPriceForCoin("ETH", date);
-    	if(price > 3000) {
+    public Trade trade(String broker, String[] coins, HashMap<String,Double> coin_price, String date) {
+    	//buy ETH if its more than 1,000
+        double price = coin_price.get("ETH");
+    	if(price > 1000) {
     		TradeInterface tInterface = new TradeInterface();
+            System.out.println("the price in dummy " + price);
             Trade trade = tInterface.createTrade(broker, name, "ETH", "buy", 400, price, date);
             return trade;
     	}

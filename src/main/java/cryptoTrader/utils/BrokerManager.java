@@ -23,6 +23,7 @@ public class BrokerManager {
 
     //returns true if the broker was added
     public boolean addBroker(String name, String[] coins, String strategyName){
+       
         if (brokers.get(name) != null){
             return false;
         }
@@ -38,6 +39,8 @@ public class BrokerManager {
         }
         return brokerList;
     }
-
+    public String getBrokerStrategy(String name){//gets the strategy of a given broker
+       return  brokers.get(name).getName();
+    }
     
 }
