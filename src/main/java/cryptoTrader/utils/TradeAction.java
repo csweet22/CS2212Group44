@@ -39,7 +39,9 @@ public class TradeAction {
         
         for(int i = 0; i < brokerlist.size();i++){//loop through each broker and make their trade
             Broker temp = brokerlist.get(i);
-             temp.makeTrade(coin_price, today);
+            if (temp.getStrategy() != null){ //if the broker has a strategy
+                temp.makeTrade(coin_price, today); //perform its strategies trade
+            }
         }
         
     }

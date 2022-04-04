@@ -194,9 +194,13 @@ public class MainUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
-		BrokerManager brokerManager = BrokerManager.getInstance();
+		BrokerManager brokerManager = BrokerManager.getInstance(); //get an instance of the BrokerManager
 		if ("refresh".equals(command)) {
-			brokerManager.clearBrokers();
+			brokerManager.clearBrokers(); //clear all the brokers so that new ones can be added on the next action
+			/* because the brokers themselves don't keep information between trades (only the tradeDB does) 
+			it is much simpler to just remove all brokers and create new ones, rather than checking with the last 
+			set of brokers to see if any should be deleted or modified
+			*/
 			for (int count = 0; count < dtm.getRowCount(); count++){
 					Object traderObject = dtm.getValueAt(count, 0);
 					if (traderObject == null) {
@@ -217,9 +221,9 @@ public class MainUI extends JFrame implements ActionListener {
 					}
 					String strategyName = strategyObject.toString();
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
-					if (!brokerManager.addBroker(traderName, coinNames, strategyName)){
-						JOptionPane.showMessageDialog(this, "Duplicate broker on line " + (count + 1) + ". Broker not added");
-						dtm.removeRow(count);
+					if (!brokerManager.addBroker(traderName, coinNames, strategyName)){ //attempt to add a new broker to the manager using the information entered in the UI
+						JOptionPane.showMessageDialog(this, "Duplicate broker on line " + (count + 1) + ". Broker not added"); //if a broker with the same name has been created higher up the list notify the user
+						dtm.removeRow(count); //delete the row containing the duplicate instance of the broker
 					}
 	        }
 			TradeAction action = new TradeAction();
