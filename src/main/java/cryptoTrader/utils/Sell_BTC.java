@@ -5,8 +5,8 @@ import java.util.HashMap;
  * A strategy that the broker can use
  * @author Nathan Chan & Nick Barrie
  */
-public class DummyB implements Strategy{
-    private String name = "Dummy-Strategy-B";
+public class Sell_BTC implements Strategy{
+    private String name = "Sell_BTC";
 
      /**
      * @param broker the name of the broker
@@ -16,12 +16,11 @@ public class DummyB implements Strategy{
 	 * @return Trade object that is stored in the database
      */
     public Trade trade(String broker, String[] coins, HashMap<String,Double> coin_price, String date) {
-        	//buy BTC if ADA is more than $1
+        	//sell 1 BTC if its less than 50000
             double bitPrice = coin_price.get("BTC");
-            double adaPrice = coin_price.get("ADA");
-            if(adaPrice < 1) {
+            if(bitPrice < 50000) {
                 TradeInterface tInterface = new TradeInterface();
-                Trade trade = tInterface.createTrade(broker, name, "BTC", "buy", 340, bitPrice, date);
+                Trade trade = tInterface.createTrade(broker, name, "BTC", "sell", 1, bitPrice, date);
                 return trade;
             }
             return null;

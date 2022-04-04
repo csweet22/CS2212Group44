@@ -6,8 +6,8 @@ import java.util.HashMap;
  * A strategy that the broker can use
  * @author Nathan Chan & Nick Barrie
  */
-public class DummyC implements Strategy{
-    private String name = "Dummy-Strategy-C";
+public class Buy_ETH implements Strategy{
+    private String name = "Buy_ETH";
 
     /**
      * @param broker the name of the broker
@@ -17,12 +17,11 @@ public class DummyC implements Strategy{
 	 * @return Trade object that is stored in the database
      */
     public Trade trade(String broker, String[] coins, HashMap<String,Double> coin_price, String date)  {
-       //buy 1000 SOL if ADA is above $1
-       double adaPrice = coin_price.get("ADA");
-       double solPrice = coin_price.get("SOL");
-       if(adaPrice > 1) {
+       //buy 5 ETH if its above 4500
+       double ETHPrice = coin_price.get("ETH");
+       if(ETHPrice > 1) {
            TradeInterface tInterface = new TradeInterface();//create a trade interface
-           Trade trade = tInterface.createTrade(broker, name, "SOL", "buy", 100, solPrice, date);//create the trade
+           Trade trade = tInterface.createTrade(broker, name, "SOL", "buy", 100, ETHPrice, date);//create the trade
            return trade;
        }
        return null;

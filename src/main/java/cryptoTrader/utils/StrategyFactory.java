@@ -21,9 +21,12 @@ public class StrategyFactory {
         // Put all strategies into this array
         Strategy[] stratList = 
         {
-            new DummyA(),
-            new DummyB(),
-            new DummyC()
+            new Buy_BTC(),
+            new Sell_BTC(),
+            new Buy_ETH(),
+            new Sell_ETH(),
+            new Buy_ADA(),
+            
         };
 
         for (Strategy strat: stratList){
