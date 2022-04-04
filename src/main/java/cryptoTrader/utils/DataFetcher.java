@@ -39,7 +39,6 @@ public class DataFetcher {
 		} catch (IOException e) {
 			System.out.println("Something went wrong with the API call.");
 		}
-		System.out.println("returned here");
 		return null;
 	}
 	
@@ -52,7 +51,6 @@ public class DataFetcher {
 			JsonObject currentPrice = marketData.get("current_price").getAsJsonObject();
 			price = currentPrice.get("cad").getAsDouble();
 		}
-		System.out.println(price);
 		return price;
 	}
 	

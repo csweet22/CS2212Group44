@@ -2,26 +2,37 @@ package cryptoTrader.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * A class that is the trade history database
+ * All the trades that are made will be stored here 
+ * @author Nathan Chan & Nick Barrie
+ */
 public class TradeHistoryDB {
 
-	private ArrayList<Trade> db = new ArrayList<Trade>();
-	private HashMap<String,Integer> numTrades = new HashMap<String, Integer>();//key is broker name, value is number of trades made
+	private ArrayList<Trade> db = new ArrayList<Trade>();//A list of the trades made
+	private HashMap<String,Integer> numTrades = new HashMap<String, Integer>();//counts the number of trades that broker has made. key is broker name, value is number of trades made
 	
 	private static TradeHistoryDB database = null;
 	
 	public TradeHistoryDB() {}
 	
-	public static TradeHistoryDB getInstance() {//create the database
-		if(database == null) {
+	/**
+	 * @return the instance of the database
+	 */
+	public static TradeHistoryDB getInstance() {
+		if(database == null) {//create the database if it doesn't exist
 			database = new TradeHistoryDB();
 		}
 		return database;
 	}
 	
-	public void store(Trade trade) {//store a trade
+	/**
+	 * Stores a new trade in the database
+	 * @param trade the Trade object to be stored
+	 */
+	public void store(Trade trade) {
 
-		db.add(trade);
+		db.add(trade);//store trade in the list
 		if(numTrades.get(trade.getName()) == null){//if this is the first time the broker has made a trade, start it at one
 			numTrades.put(trade.getName(), 1);
 		}
@@ -30,15 +41,27 @@ public class TradeHistoryDB {
 		numTrades.put(trade.getName(), num);
 	}
 
-	public int size() {//return the number of trades in the database
+	/**
+	 * 
+	 * @return the number of trades in the database
+	 */
+	public int size() {
 		return db.size();
 	}
 	
-	public Trade get(int i) {//get a trade from the database
+	/**
+	 * 
+	 * @param i the index of the trade to get
+	 * @return the Trade object at index i
+	 */
+	public Trade get(int i) {
 		return (Trade) db.get(i);
 	}
-	
-	public HashMap<String,Integer> getMap(){//return map for the bar graph
+	/**
+	 * Used by the dataVisualizer to display the histogram
+	 * @return the hashmap containing how many times each broker has made a trade
+	 */
+	public HashMap<String,Integer> getMap(){
 		return numTrades;
 	}
 }

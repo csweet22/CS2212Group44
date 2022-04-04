@@ -40,7 +40,7 @@ public class BrokerManager {
         return brokerList;
     }
     public String getBrokerStrategy(String name){//gets the strategy of a given broker
-       return  brokers.get(name).getName();
+       return  brokers.get(name).getStrategy().getName();
     }
     
 }

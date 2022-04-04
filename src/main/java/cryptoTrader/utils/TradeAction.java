@@ -10,7 +10,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/**
+ * This class contains the logic for making a trade
+ * @author Nathan Chan & Nick Barrie
+ */
 public class TradeAction {
+
+    /**
+     * Gets the coins that the brokers are interested in, fetches prices for coins, and has the brokers make their trade
+     * @param bm the broker manager
+     */
     public void performTrade(BrokerManager bm){
         ArrayList<Broker> brokerlist = new ArrayList<>();//list of the brokers
         brokerlist = bm.getBrokers();
@@ -24,11 +33,10 @@ public class TradeAction {
             
         }
         DataFetcher fetcher = new DataFetcher();
-       LocalDateTime LocalDate = LocalDateTime.now();
-       DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//date in proper format for api call
+        LocalDateTime LocalDate = LocalDateTime.now();
+        DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//date in proper format for api call
         String today = dateformatter.format(LocalDate).toString();
 
-        System.out.println(today);
         String[] allCoins = {"ethereum","bitcoin","cardano","tether","solana","decentraland"};//the name for the api call
         String[] shortForm = {"ETH","BTC","ADA","USDT","SOL","MANA"};//the symbol
         HashMap<String,Double> coin_price = new HashMap<String, Double>();//a map that associates the coin to the price
