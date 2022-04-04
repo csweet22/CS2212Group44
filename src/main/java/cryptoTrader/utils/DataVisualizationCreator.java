@@ -183,16 +183,7 @@ public class DataVisualizationCreator {
 	
 	private void createBar() {
 		
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		
-		Object[][] data = dbInterface.getBarData();// get an array of the data needed for the chart
-
-		for(int i = 0; i < data.length;i++) {
-			int num = (int) data[i][0];// get number of trades
-			String name = (String) data[i][1];// get name of trader
-			String strat = (String) data[i][2];// get strategy of trader
-			dataset.setValue(num, name, strat);//insert into graph
-		}
+		DefaultCategoryDataset dataset = dbInterface.getBarData(); //get data for bar graph from trade database
 
 		CategoryPlot plot = new CategoryPlot();
 		BarRenderer barrenderer1 = new BarRenderer();

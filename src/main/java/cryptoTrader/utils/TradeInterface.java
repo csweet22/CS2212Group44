@@ -2,6 +2,8 @@ package cryptoTrader.utils;
 
 import java.util.ArrayList;
 
+import org.jfree.data.category.DefaultCategoryDataset;
+
 public class TradeInterface {
 	static TradeHistoryDB db; //use singleton method to retrieve
 	
@@ -30,20 +32,25 @@ public class TradeInterface {
 		return table;
 	}
 	
-	public Object[][] getBarData() {//get the information that the bar graph needs
-		BrokerManager brokerManager = BrokerManager.getInstance();
-		ArrayList<String> names = new ArrayList<String>();//names of brokers
-		names.addAll(db.getMap().keySet());
-		ArrayList<Integer> values = new ArrayList<Integer>();//number of trades made
-		values.addAll(db.getMap().values());
-		Object[][] barData = new Object[names.size()][3];
-		for(int i =0; i< names.size(); i++) {//formats the information how the bargraph wants
-
-			barData[i][0] = values.get(i);//number of trades
-			barData[i][1] = names.get(i);//name of broker
-			barData[i][2]= brokerManager.getBrokerStrategy(names.get(i));//strategy name
-			
+	/**
+	 * Formats the data for use in the bar graph
+	 * @return a DefaultCategoryDataset to be used in the bar chart
+	 */
+	public DefaultCategoryDataset getBarData() {
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //create a new dataset
+		ArrayList<String> strategyNames = StrategyFactory.getInstance().getStrategyNames(); //get a list of all the strategy names
+		
+		Object[][] data = getTableData();// gets data for bar graph from TradeInterface
+		for (Broker broker: BrokerManager.getInstance().getBrokers()){ //for every broker
+			for (String strat: strategyNames){ //and every 
+				dataset.setValue(null, broker.getName(), strat); //initialize the dataset with every broker and strategy
+			}
 		}
-		return barData;
+
+
+		for (int i = 0; i < data.length; i++){ //for all trades in the database
+				dataset.incrementValue(1, data[i][0].toString(), data[i][1].toString()); //increment the value of the matching broker and strategy
+		}
+		return dataset; //return the formatted data
 	}
 }
