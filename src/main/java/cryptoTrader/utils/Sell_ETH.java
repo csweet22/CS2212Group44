@@ -18,7 +18,7 @@ public class Sell_ETH implements Strategy{
     public Trade trade(String broker, String[] coins, HashMap<String,Double> coin_price, String date) {
         	//sell 1 ETH if its less than 4500
             double price = coin_price.get("ETH");
-            if(price < 50000) {
+            if(price < 4500) {
                 TradeInterface tInterface = new TradeInterface();
                 Trade trade = tInterface.createTrade(broker, name, "ETH", "sell", 1, price, date);
                 return trade;

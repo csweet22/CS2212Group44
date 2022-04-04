@@ -19,7 +19,7 @@ public class Buy_ETH implements Strategy{
     public Trade trade(String broker, String[] coins, HashMap<String,Double> coin_price, String date)  {
        //buy 5 ETH if its above 4500
        double ETHPrice = coin_price.get("ETH");
-       if(ETHPrice > 1) {
+       if(ETHPrice > 4500) {
            TradeInterface tInterface = new TradeInterface();//create a trade interface
            Trade trade = tInterface.createTrade(broker, name, "SOL", "buy", 100, ETHPrice, date);//create the trade
            return trade;
