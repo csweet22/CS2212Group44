@@ -1,5 +1,9 @@
 package cryptoTrader.utils;
 
+/**
+ * The trade object
+ * @author Nick Barrie & Nathan Chan
+ */
 public class Trade {
 	private String clientName;
 	private String strategyName;
@@ -9,6 +13,16 @@ public class Trade {
 	private double unitPrice;
 	private String timeStamp;
 	
+	/**
+	 * 
+	 * @param clientName name of the broker
+	 * @param strategyName name of the strategy used
+	 * @param coinTraded name of the coin
+	 * @param action buy or sell
+	 * @param quantity number of coins traded
+	 * @param unitPrice price of the coin
+	 * @param timeStamp the date of the trade
+	 */
 	public Trade(String clientName, String strategyName, String coinTraded, String action, int quantity, double unitPrice, String timeStamp) {
 		this.clientName = clientName;
 		this.strategyName = strategyName;
@@ -19,6 +33,10 @@ public class Trade {
 		this.timeStamp = timeStamp;
 	}
 	
+	/**
+	 * returns the information stored in the trade
+	 * @return object array with all of the information from the trade
+	 */
 	public Object[] getTradeInfo(){
 		Object[] tradeInfo = new Object[7];
 		tradeInfo[0] = clientName;
@@ -31,6 +49,10 @@ public class Trade {
 		return tradeInfo;
 	}
 
+	/**
+	 * 
+	 * @return name of the broker that made the trade
+	 */
 	public String getName(){
 		return clientName;
 	}

@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+/**
+ * this class contains the logic of making a trade
+ * @author Nathan Chan & Nick Barrie
+ */
 public class TradeAction {
     public void performTrade(BrokerManager bm){
         ArrayList<Broker> brokerlist = new ArrayList<>();//list of the brokers
@@ -24,8 +28,8 @@ public class TradeAction {
             
         }
         DataFetcher fetcher = new DataFetcher();
-       LocalDateTime LocalDate = LocalDateTime.now();
-       DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//date in proper format for api call
+        LocalDateTime LocalDate = LocalDateTime.now();
+        DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//date in proper format for api call
         String today = dateformatter.format(LocalDate).toString();
 
         System.out.println(today);

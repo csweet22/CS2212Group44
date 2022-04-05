@@ -3,6 +3,10 @@ package cryptoTrader.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * this class stores the information of a trade
+ * @author Nick Barrie & Nathan Chan
+ */
 public class TradeHistoryDB {
 
 	private ArrayList<Trade> db = new ArrayList<Trade>();
@@ -12,16 +16,23 @@ public class TradeHistoryDB {
 	
 	public TradeHistoryDB() {}
 	
-	public static TradeHistoryDB getInstance() {//create the database
+	/**
+	 * create the database
+	 * @return the database
+	 */
+	public static TradeHistoryDB getInstance() {
 		if(database == null) {
 			database = new TradeHistoryDB();
 		}
 		return database;
 	}
 	
-	public void store(Trade trade) {//store a trade
-
-		db.add(trade);
+	/**
+	 * stores a trade in the database
+	 * @param trade the trade to be stored
+	 */
+	public void store(Trade trade) {
+		db.add(trade);//store the trade
 		if(numTrades.get(trade.getName()) == null){//if this is the first time the broker has made a trade, start it at one
 			numTrades.put(trade.getName(), 1);
 		}
@@ -30,15 +41,28 @@ public class TradeHistoryDB {
 		numTrades.put(trade.getName(), num);
 	}
 
-	public int size() {//return the number of trades in the database
+	/**
+	 * 
+	 * @return the number of trades in the database
+	 */
+	public int size() {
 		return db.size();
 	}
 	
-	public Trade get(int i) {//get a trade from the database
+	/**
+	 * 
+	 * @param i the index of the trade to get
+	 * @return the trade requested
+	 */
+	public Trade get(int i) {
 		return (Trade) db.get(i);
 	}
 	
-	public HashMap<String,Integer> getMap(){//return map for the bar graph
+	/**
+	 * 
+	 * @return hashmap for the bargraph
+	 */
+	public HashMap<String,Integer> getMap(){
 		return numTrades;
 	}
 }
