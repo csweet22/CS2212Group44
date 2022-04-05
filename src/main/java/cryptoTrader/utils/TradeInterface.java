@@ -4,20 +4,42 @@ import java.util.ArrayList;
 
 import org.jfree.data.category.DefaultCategoryDataset;
 
+/**
+ * this class interfaces with the TradeHistoryDB to get the information for the table and bar graph
+ * @author Nathan Chan & Nick Barrie
+ */
 public class TradeInterface {
-	static TradeHistoryDB db; //use singleton method to retrieve
+	static TradeHistoryDB db;
 	
+	/**
+	 * 
+	 * @param clientName name of the broker
+	 * @param strategyName name of the strategy used
+	 * @param coinTraded name of the coin
+	 * @param action buy or sell
+	 * @param quantity number of coins traded
+	 * @param unitPrice price of the coin
+	 * @param timeStamp the date of the trade
+	 * @return the trade created
+	 */
 	public Trade createTrade(String clientName, String strategyName, String coinTraded, String action, int quantity, double unitPrice, String timeStamp) {
 		Trade trade = new Trade(clientName, strategyName, coinTraded, action, quantity, unitPrice, timeStamp);
 		db.store(trade);//store the trade in the database
 		return trade;
 	}
 	
+	/**
+	 * creates the trade interface
+	 */
 	public TradeInterface() {
-		db = TradeHistoryDB.getInstance();
+		db = TradeHistoryDB.getInstance(); //use singleton method to retrieve
 	}
 	
-	public Object[][] getTableData(){//get the information that the table needs
+	/**
+	 * Formats the data for use in the table
+	 * @return a 2-d object array that holds all the trade information
+	 */
+	public Object[][] getTableData(){
 		Object[][] table = new Object[db.size()][7];
 		for(int i = 0; i < db.size(); i++) {
 			Object[] tradeInfo = db.get(i).getTradeInfo();
